@@ -1,0 +1,475 @@
+/* styles.css */
+#map {
+    height: calc(100vh - 100px);
+    width: 100%;
+    margin: 0;
+    border-radius: 8px;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.map-search-container {
+    position: fixed;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 82%;
+    background: rgba(135, 206, 235, 0.93);
+    backdrop-filter: blur(4px);
+    border-radius: 31px;
+    box-shadow: 
+        0 4px 12px rgba(135, 206, 235, 0.3),
+        inset 0 2px 4px rgba(255,255,255,0.2);
+    padding: 12px 20px;
+    display: flex;
+    gap: 15px;
+    z-index: 1000;
+}
+
+#map-search-input {
+    flex: 1;
+    height: 46px;
+    border: 1px solid #D3E0EA;
+    border-radius: 10px;
+    padding: 0 20px;
+    font-size: 15px;
+    font-family: 'Arial Rounded MT Bold', sans-serif;
+    color: #5A6D80;
+    background: rgba(255,255,255,0.96);
+    transition: all 0.32s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.search-results {
+    position: absolute;
+    bottom: 56px;
+    left: 20px;
+    right: 20px;
+    max-height: 200px;
+    overflow-y: auto;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.quick-tools {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-locate, 
+.btn-export {
+    height: 46px;
+    padding: 0 16px;
+    border: none;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.96);
+    font-family: 'Arial Rounded MT Bold', sans-serif;
+    color: #5A6D80;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-locate:hover,
+.btn-export:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(64, 158, 255, 0.25);
+}
+
+/* 新增定位相关样式 */
+.btn-locate:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.btn-locate.loading {
+    position: relative;
+    padding-left: 36px;
+}
+
+.btn-locate.loading::after {
+    content: '';
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #5A6D80;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    transform: translateY(-50%);
+}
+
+/* 在style.css末尾添加 */
+/* 主题切换按钮样式 */
+.btn-theme {
+    height: 46px;
+    padding: 0 16px;
+    border: none;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.96);
+    font-family: 'Arial Rounded MT Bold', sans-serif;
+    color: #5A6D80;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-theme:hover {
+    transform: rotate(180deg);
+}
+
+/* 暗黑主题适配 */
+.dark-theme .timeline-panel {
+    background: rgba(40, 40, 40, 0.9);
+}
+
+.dark-theme .stats-card {
+    background: #3a4046;
+    color: #fff;
+}
+
+.dark-theme .map-search-container {
+    background: rgba(40, 40, 40, 0.93);
+}
+/* 在styles.css文件末尾添加 */
+/* 景点搜索增强样式 */
+.poi-item {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+.poi-thumb {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    object-fit: cover;
+    margin-right: 15px;
+}
+
+.poi-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.type-tag {
+    display: inline-block;
+    padding: 4px 8px;
+    background: #3498db;
+    color: white;
+    border-radius: 4px;
+    font-size: 0.8em;
+    margin: 5px 0;
+}
+
+.poi-description {
+    color: #666;
+    font-size: 0.9em;
+    line-height: 1.4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.search-error {
+    padding: 15px;
+    color: #e74c3c;
+    text-align: center;
+}
+
+/* 暗黑模式适配 */
+.dark-theme .poi-item {
+    background: #2c3e50;
+    border-color: #34495e;
+}
+
+.dark-theme .poi-description {
+    color: #bdc3c7;
+}
+
+/* 在styles.css中添加以下样式 */
+/* 标记相关样式 */
+.custom-marker {
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.custom-marker:hover {
+    transform: scale(1.2);
+}
+
+.marker-popup {
+    min-width: 200px;
+    padding: 10px;
+}
+
+.marker-title {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.marker-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.mark-tools {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 1000;
+}
+
+.btn-clear, .btn-export-marks {
+    padding: 8px 15px;
+    background: rgba(255,255,255,0.9);
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-clear:hover, .btn-export-marks:hover {
+    background: #fff;
+    transform: translateY(-2px);
+}
+
+/* 暗黑模式适配 */
+.dark-theme .marker-title {
+    background: #333;
+    color: #fff;
+    border-color: #555;
+}
+
+.dark-theme .mark-tools button {
+    background: rgba(50,50,50,0.9);
+    color: #fff;
+}
+@keyframes spin {
+    to { transform: translateY(-50%) rotate(360deg); }
+}
+/* ============== 路径规划样式 ============== */
+.route-tools {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 2000;
+  }
+  
+  .route-tools button {
+    padding: 8px 15px;
+    background: rgba(255,255,255,0.9);
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'Arial Rounded MT Bold', sans-serif;
+    color: #5A6D80;
+  }
+  
+  .route-tools button:hover {
+    background: #fff;
+    transform: translateY(-2px);
+  }
+  
+  /* 路径线样式 */
+  .leaflet-routing-alt {
+    background: rgba(255,255,255,0.9) !important;
+    border-radius: 8px !important;
+    margin: 10px !important;
+  }
+  
+  /* 暗黑模式适配 */
+  .dark-theme .route-tools button {
+    background: rgba(50,50,50,0.9);
+    color: #fff;
+  }
+  
+  .dark-theme .leaflet-routing-alt {
+    background: rgba(40,40,40,0.9) !important;
+    color: #fff;
+  }
+  
+  .dark-theme .leaflet-routing-container {
+    background: rgba(40,40,40,0.9) !important;
+    color: #fff;
+  }
+  .dark-theme .leaflet-routing-geocoders input {
+    background: #333 !important;
+    color: #fff !important;
+  }
+  
+  .dark-theme .leaflet-bar {
+    background: rgba(40,40,40,0.9) !important;
+  }
+  
+  .dark-theme .leaflet-bar a {
+    color: #fff !important;
+    background: #2c3e50 !important;
+  }
+  
+  /* 路径线颜色适配 */
+  .dark-theme .leaflet-routing-line {
+    stroke: #90CAF9 !important;
+  }
+
+/* ============== 路径规划增强样式 ============== */
+/* 按钮状态反馈 */
+.route-tools button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    filter: grayscale(0.8);
+  }
+  
+  .route-tools button.active-mode {
+    background: #2196F3 !important;
+    color: white !important;
+    box-shadow: 0 0 10px rgba(33, 150, 243, 0.4);
+  }
+  
+  /* 路径线样式增强 */
+  .leaflet-routing-container {
+    min-width: 280px !important;
+    max-height: 400px !important;
+    overflow-y: auto !important;
+  }
+  
+  .leaflet-routing-alt table {
+    font-family: 'Arial Rounded MT Bold', sans-serif !important;
+    font-size: 14px !important;
+  }
+  
+  .leaflet-routing-alt h2 {
+    display: none !important;
+  }
+  
+  @keyframes fadeInOut {
+    0% { opacity: 0; transform: translateY(20px) translateX(-50%); }
+    20% { opacity: 1; transform: translateY(0) translateX(-50%); }
+    80% { opacity: 1; transform: translateY(0) translateX(-50%); }
+    100% { opacity: 0; transform: translateY(-20px) translateX(-50%); }
+  }
+  
+  .route-tools button.awaiting-input {
+    animation: buttonPulse 1.5s infinite;
+    background: #FFC107 !important;
+    color: #5A6D80 !important;
+  }
+  
+  /* 坐标输入提示 */
+  .coord-hint {
+    position: fixed;
+    bottom: 160px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255,255,255,0.95);
+    padding: 6px 15px;
+    border-radius: 15px;
+    font-size: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    z-index: 2000;
+    border: 1px solid #D3E0EA;
+  }
+  
+  .dark-theme .coord-hint {
+    background: rgba(40,40,40,0.95);
+    border-color: #555;
+    color: #fff;
+  }
+  
+  /* 路径统计信息 */
+  .route-stats {
+    position: fixed;
+    top: 120px;
+    right: 20px;
+    background: rgba(255,255,255,0.9);
+    padding: 12px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    z-index: 1000;
+  }
+  
+  .route-stats div {
+    margin: 4px 0;
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+  }
+  
+  .route-stats span:first-child {
+    color: #5A6D80;
+    font-weight: bold;
+  }
+  
+  .dark-theme .route-stats {
+    background: rgba(40,40,40,0.9);
+    color: #fff;
+  }
+  
+  /* 操作引导提示 */
+  .guide-tooltip {
+    position: fixed;
+    bottom: 200px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255,255,255,0.95);
+    padding: 10px 20px;
+    border-radius: 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 2000;
+  }
+  
+  .guide-tooltip::before {
+    content: '💡';
+    font-size: 16px;
+  }
+  
+  .dark-theme .guide-tooltip {
+    background: rgba(40,40,40,0.95);
+    color: #fff;
+  }
+
+/* ============== 路径规划状态提示 ============== */
+.route-status {
+    position: fixed;
+    bottom: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255,255,255,0.9);
+    padding: 8px 20px;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 2000;
+    font-family: 'Arial Rounded MT Bold', sans-serif;
+    color: #5A6D80;
+    animation: fadeInOut 2s ease;
+    pointer-events: none; /* 防止点击穿透 */
+  }
+  
+  @keyframes fadeInOut {
+    0% { opacity: 0; transform: translateY(20px) translateX(-50%); }
+    20% { opacity: 1; transform: translateY(0) translateX(-50%); }
+    80% { opacity: 1; transform: translateY(0) translateX(-50%); }
+    100% { opacity: 0; transform: translateY(-20px) translateX(-50%); }
+  }
+  
+  .dark-theme .route-status {
+    background: rgba(40,40,40,0.9);
+    color: #fff;
+  }

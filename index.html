@@ -1,0 +1,57 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>旅游地图</title>
+  <link rel="icon" href="ditu.png" type="image/x-icon" />
+  <!-- Leaflet地图库 -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  
+  <!-- 路径规划插件 -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css">
+
+  <!-- Swiper时间轴库 -->
+  <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css">
+  
+  <!-- 自定义样式 -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- 地图容器 -->
+  <div id="map"></div>
+  
+  <!-- 搜索容器 -->
+  <div class="map-search-container">
+    <div class="search-box">
+      <input type="text" 
+            placeholder="搜索区域（如Port de Gennevilliers）"
+            id="map-search-input">
+      <div class="search-results"></div>
+    </div>
+    
+    <!-- 实用工具 -->
+    <div class="quick-tools">
+      <button class="btn-locate">📍 我的位置</button>
+      <button class="btn-theme">🌓 主题切换</button>
+    </div>
+  </div>
+
+  <!-- 路径规划工具 -->
+  <div class="route-tools">
+    <button class="btn-start">📍 设起点</button>
+    <button class="btn-end">🏁 设终点</button>
+    <button class="btn-clear-route">🗑️ 清除路径</button>
+  </div>
+
+  <!-- 依赖库 -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+  
+  <!-- 路径规划插件 -->
+  <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
+  
+  <!-- 核心逻辑 -->
+  <script src="map-core.js"></script>
+</body>
+</html>
